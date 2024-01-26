@@ -18,9 +18,9 @@ public interface MedicineService {
 
     List<Medicine> searchByManufacturer(String manufacturer);
 
-    List<Medicine> searchByDateCreated(Date dateCreated);
+    List<Medicine> searchByDateCreated(String dateCreated);
 
-    List<Medicine> searchByExpiryDate(Date expiryDate);
+    List<Medicine> searchByExpiryDate(String expiryDate);
 
     Medicine saveMedicine(CreateMedicineRequest medicine);
 

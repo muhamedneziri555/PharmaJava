@@ -17,6 +17,14 @@ public class MedicineServiceImpl implements MedicineService {
 
     @Autowired
     private MedicineRepository medicineRepository;
+    @Autowired
+    private CategoryService categoryService;
+    @Autowired
+    private DateCreatedService dateCreatedService;
+    @Autowired
+    private ExpiryDateService expiryDateService;
+    @Autowired
+    private ManufacturerService manufacturerService;
 
     @Override
     public List<Medicine> getAllMedicines() {
@@ -50,7 +58,7 @@ public class MedicineServiceImpl implements MedicineService {
     }
 
     @Override
-    public List<Medicine> searchByDateCreated(Date dateCreated) {
+    public List<Medicine> searchByDateCreated(String dateCreated) {
         List<Medicine> allMedicines = medicineRepository.findAll();
         return allMedicines.stream()
                 .filter(medicine -> medicine.getDateCreated() != null && medicine.getDateCreated().getDate().equals(dateCreated))
@@ -58,7 +66,7 @@ public class MedicineServiceImpl implements MedicineService {
     }
 
     @Override
-    public List<Medicine> searchByExpiryDate(Date expiryDate) {
+    public List<Medicine> searchByExpiryDate(String expiryDate) {
         List<Medicine> allMedicines = medicineRepository.findAll();
         return allMedicines.stream()
                 .filter(medicine -> medicine.getExpiryDate() != null && medicine.getExpiryDate().getDate().equals(expiryDate))
@@ -70,6 +78,10 @@ public class MedicineServiceImpl implements MedicineService {
     public Medicine saveMedicine(CreateMedicineRequest medicine) {
         Medicine med = new Medicine();
         med.setName(medicine.getName());
+        med.setCategory(categoryService.getCategoryById(medicine.getCategoryId()));
+        med.setManufacturer(manufacturerService.getManufacturerById(medicine.getManufacturerId()));
+        med.setExpiryDate(expiryDateService.getExpiryDateById(medicine.getExpiryDateId()));
+        med.setDateCreated(dateCreatedService.getDateCreatedById(medicine.getDateCreatedId()));
         return medicineRepository.save(med);
     }
 

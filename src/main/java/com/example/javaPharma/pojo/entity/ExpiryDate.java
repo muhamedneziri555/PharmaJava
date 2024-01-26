@@ -1,11 +1,12 @@
 package com.example.javaPharma.pojo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
+@Table(name= "expiryDate")
 public class ExpiryDate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +15,19 @@ public class ExpiryDate {
     private String date; // You might want to use the appropriate date type based on your requirements
 
     // getters and setters
+
+    @OneToMany(mappedBy = "expiryDate")
+    @JsonBackReference
+    private Set<Medicine> medicines;
+
+    public ExpiryDate() {
+    }
+
+    public ExpiryDate(Long id, String date, Set<Medicine> medicines) {
+        this.id = id;
+        this.date = date;
+        this.medicines = medicines;
+    }
 
     public Long getId() {
         return id;
@@ -29,5 +43,13 @@ public class ExpiryDate {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public Set<Medicine> getMedicines() {
+        return medicines;
+    }
+
+    public void setMedicines(Set<Medicine> medicines) {
+        this.medicines = medicines;
     }
 }

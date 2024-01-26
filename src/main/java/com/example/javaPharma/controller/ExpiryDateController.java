@@ -30,13 +30,6 @@ public class ExpiryDateController {
         return expiryDateService.saveExpiryDate(expiryDate);
     }
 
-    @PutMapping("/{id}")
-    public ExpiryDate updateExpiryDate(@PathVariable Long id, @RequestBody CreateExpiryDateRequest expiryDate) {
-        var existingExpiryDate = expiryDateService.getExpiryDateById(id);
-        existingExpiryDate.setDate(expiryDate.getDate());
-        return expiryDateService.saveExpiryDate(expiryDate);
-    }
-
     @DeleteMapping("/{id}")
     public void deleteExpiryDate(@PathVariable Long id) {
         expiryDateService.deleteExpiryDate(id);

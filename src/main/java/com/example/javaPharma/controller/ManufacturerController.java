@@ -30,12 +30,6 @@ public class ManufacturerController {
         return manufacturerService.saveManufacturer(manufacturer);
     }
 
-    @PutMapping("/{id}")
-    public Manufacturer updateManufacturer(@PathVariable Long id, @RequestBody CreateManufacturerRequest manufacturer) {
-        var existingManufacturer = manufacturerService.getManufacturerById(id);
-        existingManufacturer.setName(manufacturer.getName());
-        return manufacturerService.saveManufacturer(manufacturer);
-    }
 
     @DeleteMapping("/{id}")
     public void deleteManufacturer(@PathVariable Long id) {
