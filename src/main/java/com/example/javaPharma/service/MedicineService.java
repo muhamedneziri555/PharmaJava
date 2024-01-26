@@ -1,6 +1,7 @@
 package com.example.javaPharma.service;
 
 
+import com.example.javaPharma.pojo.dto.CreateMedicineRequest;
 import com.example.javaPharma.pojo.entity.Medicine;
 
 import java.util.Date;
@@ -21,7 +22,7 @@ public interface MedicineService {
 
     List<Medicine> searchByExpiryDate(Date expiryDate);
 
-    Medicine saveMedicine(Medicine medicine);
+    Medicine saveMedicine(CreateMedicineRequest medicine);
 
     void deleteMedicine(Long id);
 }

@@ -1,6 +1,8 @@
 package com.example.javaPharma.service;
 
 
+import com.example.javaPharma.pojo.dto.CreateMedicineRequest;
+import com.example.javaPharma.pojo.entity.Manufacturer;
 import com.example.javaPharma.pojo.entity.Medicine;
 import com.example.javaPharma.repository.MedicineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,8 +67,10 @@ public class MedicineServiceImpl implements MedicineService {
 
 
     @Override
-    public Medicine saveMedicine(Medicine medicine) {
-        return medicineRepository.save(medicine);
+    public Medicine saveMedicine(CreateMedicineRequest medicine) {
+        Medicine med = new Medicine();
+        med.setName(medicine.getName());
+        return medicineRepository.save(med);
     }
 
     @Override

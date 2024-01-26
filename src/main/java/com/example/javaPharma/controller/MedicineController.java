@@ -1,6 +1,7 @@
 package com.example.javaPharma.controller;
 
 
+import com.example.javaPharma.pojo.dto.CreateMedicineRequest;
 import com.example.javaPharma.pojo.entity.Medicine;
 import com.example.javaPharma.service.MedicineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +32,14 @@ public class MedicineController {
     }
 
     @PostMapping
-    public Medicine createMedicine(@RequestBody Medicine medicine) {
+    public Medicine createMedicine(@RequestBody CreateMedicineRequest medicine) {
         return medicineService.saveMedicine(medicine);
     }
 
     @PutMapping("/{id}")
-    public Medicine updateMedicine(@PathVariable Long id, @RequestBody Medicine medicine) {
-        medicine.setId(id);
+    public Medicine updateMedicine(@PathVariable Long id, @RequestBody CreateMedicineRequest medicine) {
+        var existingMedicine = medicineService.getMedicineById(id);
+        existingMedicine.setName(medicine.getName());
         return medicineService.saveMedicine(medicine);
     }
 
