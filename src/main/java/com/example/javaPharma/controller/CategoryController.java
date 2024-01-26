@@ -2,6 +2,7 @@ package com.example.javaPharma.controller;
 
 
 import com.example.javaPharma.pojo.dto.CreateCategoryRequest;
+import com.example.javaPharma.pojo.dto.UpdateCategoryRequest;
 import com.example.javaPharma.pojo.entity.Category;
 import com.example.javaPharma.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,8 @@ public class CategoryController {
     }
 
     @PutMapping("/{id}")
-    public Category updateCategory(@PathVariable Long id, @RequestBody CreateCategoryRequest category) {
-        return categoryService.saveCategory(category);
+    public Category updateCategory(@PathVariable Long id, @RequestBody UpdateCategoryRequest category) {
+        return categoryService.updateCategory(id,category);
     }
 
     @DeleteMapping("/{id}")

@@ -30,12 +30,6 @@ public class DateCreatedController {
         return dateCreatedService.saveDateCreated(dateCreated);
     }
 
-    @PutMapping("/{id}")
-    public DateCreated updateDateCreated(@PathVariable Long id, @RequestBody CreateDateCreatedRequest dateCreated) {
-        var existingdateCreated = dateCreatedService.getDateCreatedById(id);
-        existingdateCreated.setDate(dateCreated.getDate());
-        return dateCreatedService.saveDateCreated(dateCreated);
-    }
 
     @DeleteMapping("/{id}")
     public void deleteDateCreated(@PathVariable Long id) {

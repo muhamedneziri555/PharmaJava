@@ -1,6 +1,7 @@
 package com.example.javaPharma.service;
 
 import com.example.javaPharma.pojo.dto.CreateCategoryRequest;
+import com.example.javaPharma.pojo.dto.UpdateCategoryRequest;
 import com.example.javaPharma.pojo.entity.Category;
 import com.example.javaPharma.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,13 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void deleteCategory(Long id) {
         categoryRepository.deleteById(id);
+    }
+
+    @Override
+    public Category updateCategory(Long id, UpdateCategoryRequest category) {
+       Category oldCategory = categoryRepository.findById(id).orElse(null);
+        oldCategory.setName(category.getName());
+
+        return categoryRepository.save(oldCategory);
     }
 }
