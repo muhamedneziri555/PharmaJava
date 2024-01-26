@@ -1,5 +1,6 @@
 package com.example.javaPharma.controller;
 
+import com.example.javaPharma.pojo.dto.CreateDateCreatedRequest;
 import com.example.javaPharma.pojo.entity.DateCreated;
 import com.example.javaPharma.service.DateCreatedService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +26,14 @@ public class DateCreatedController {
     }
 
     @PostMapping
-    public DateCreated createDateCreated(@RequestBody DateCreated dateCreated) {
+    public DateCreated createDateCreated(@RequestBody CreateDateCreatedRequest dateCreated) {
         return dateCreatedService.saveDateCreated(dateCreated);
     }
 
     @PutMapping("/{id}")
-    public DateCreated updateDateCreated(@PathVariable Long id, @RequestBody DateCreated dateCreated) {
-        dateCreated.setId(id);
+    public DateCreated updateDateCreated(@PathVariable Long id, @RequestBody CreateDateCreatedRequest dateCreated) {
+        var existingdateCreated = dateCreatedService.getDateCreatedById(id);
+        existingdateCreated.setDate(dateCreated.getDate());
         return dateCreatedService.saveDateCreated(dateCreated);
     }
 

@@ -1,5 +1,6 @@
 package com.example.javaPharma.service;
 
+import com.example.javaPharma.pojo.dto.CreateManufacturerRequest;
 import com.example.javaPharma.pojo.entity.Manufacturer;
 
 import java.util.List;
@@ -9,7 +10,7 @@ public interface ManufacturerService {
 
     Manufacturer getManufacturerById(Long id);
 
-    Manufacturer saveManufacturer(Manufacturer manufacturer);
+    Manufacturer saveManufacturer(CreateManufacturerRequest manufacturer);
 
     void deleteManufacturer(Long id);
 }

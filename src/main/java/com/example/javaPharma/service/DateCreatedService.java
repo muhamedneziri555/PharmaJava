@@ -1,5 +1,6 @@
 package com.example.javaPharma.service;
 
+import com.example.javaPharma.pojo.dto.CreateDateCreatedRequest;
 import com.example.javaPharma.pojo.entity.DateCreated;
 
 import java.util.List;
@@ -9,7 +10,7 @@ public interface DateCreatedService {
 
     DateCreated getDateCreatedById(Long id);
 
-    DateCreated saveDateCreated(DateCreated dateCreated);
+    DateCreated saveDateCreated(CreateDateCreatedRequest dateCreated);
 
     void deleteDateCreated(Long id);
 

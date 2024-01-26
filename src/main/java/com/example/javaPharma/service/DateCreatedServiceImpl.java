@@ -1,6 +1,8 @@
 package com.example.javaPharma.service;
 
 
+import com.example.javaPharma.pojo.dto.CreateDateCreatedRequest;
+import com.example.javaPharma.pojo.entity.Category;
 import com.example.javaPharma.pojo.entity.DateCreated;
 import com.example.javaPharma.repository.DateCreatedRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +27,10 @@ public class DateCreatedServiceImpl implements DateCreatedService {
     }
 
     @Override
-    public DateCreated saveDateCreated(DateCreated dateCreated) {
-        return dateCreatedRepository.save(dateCreated);
+    public DateCreated saveDateCreated(CreateDateCreatedRequest dateCreated) {
+        DateCreated dat = new DateCreated();
+        dat.setDate(dateCreated.getDate());
+        return dateCreatedRepository.save(dat);
     }
 
     @Override

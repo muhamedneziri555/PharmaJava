@@ -1,5 +1,6 @@
 package com.example.javaPharma.controller;
 
+import com.example.javaPharma.pojo.dto.CreateManufacturerRequest;
 import com.example.javaPharma.pojo.entity.Manufacturer;
 import com.example.javaPharma.service.ManufacturerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +26,14 @@ public class ManufacturerController {
     }
 
     @PostMapping
-    public Manufacturer createManufacturer(@RequestBody Manufacturer manufacturer) {
+    public Manufacturer createManufacturer(@RequestBody CreateManufacturerRequest manufacturer) {
         return manufacturerService.saveManufacturer(manufacturer);
     }
 
     @PutMapping("/{id}")
-    public Manufacturer updateManufacturer(@PathVariable Long id, @RequestBody Manufacturer manufacturer) {
-        manufacturer.setId(id);
+    public Manufacturer updateManufacturer(@PathVariable Long id, @RequestBody CreateManufacturerRequest manufacturer) {
+        var existingManufacturer = manufacturerService.getManufacturerById(id);
+        existingManufacturer.setName(manufacturer.getName());
         return manufacturerService.saveManufacturer(manufacturer);
     }
 

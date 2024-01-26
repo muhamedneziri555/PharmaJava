@@ -1,5 +1,6 @@
 package com.example.javaPharma.controller;
 
+import com.example.javaPharma.pojo.dto.CreateExpiryDateRequest;
 import com.example.javaPharma.pojo.entity.ExpiryDate;
 import com.example.javaPharma.service.ExpiryDateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +26,14 @@ public class ExpiryDateController {
     }
 
     @PostMapping
-    public ExpiryDate createExpiryDate(@RequestBody ExpiryDate expiryDate) {
+    public ExpiryDate createExpiryDate(@RequestBody CreateExpiryDateRequest expiryDate) {
         return expiryDateService.saveExpiryDate(expiryDate);
     }
 
     @PutMapping("/{id}")
-    public ExpiryDate updateExpiryDate(@PathVariable Long id, @RequestBody ExpiryDate expiryDate) {
-        expiryDate.setId(id);
+    public ExpiryDate updateExpiryDate(@PathVariable Long id, @RequestBody CreateExpiryDateRequest expiryDate) {
+        var existingExpiryDate = expiryDateService.getExpiryDateById(id);
+        existingExpiryDate.setDate(expiryDate.getDate());
         return expiryDateService.saveExpiryDate(expiryDate);
     }
 

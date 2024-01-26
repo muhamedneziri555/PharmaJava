@@ -1,6 +1,8 @@
 package com.example.javaPharma.service;
 
 
+import com.example.javaPharma.pojo.dto.CreateExpiryDateRequest;
+import com.example.javaPharma.pojo.entity.DateCreated;
 import com.example.javaPharma.pojo.entity.ExpiryDate;
 import com.example.javaPharma.repository.ExpiryDateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +27,10 @@ public class ExpiryDateServiceImpl implements ExpiryDateService {
     }
 
     @Override
-    public ExpiryDate saveExpiryDate(ExpiryDate expiryDate) {
-        return expiryDateRepository.save(expiryDate);
+    public ExpiryDate saveExpiryDate(CreateExpiryDateRequest expiryDate) {
+        ExpiryDate exp = new ExpiryDate();
+        exp.setDate(expiryDate.getDate());
+        return expiryDateRepository.save(exp);
     }
 
     @Override

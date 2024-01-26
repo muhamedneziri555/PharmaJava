@@ -1,6 +1,8 @@
 package com.example.javaPharma.service;
 
 
+import com.example.javaPharma.pojo.dto.CreateManufacturerRequest;
+import com.example.javaPharma.pojo.entity.Category;
 import com.example.javaPharma.pojo.entity.Manufacturer;
 import com.example.javaPharma.repository.ManufacturerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +27,10 @@ public class ManufacturerServiceImpl implements ManufacturerService {
     }
 
     @Override
-    public Manufacturer saveManufacturer(Manufacturer manufacturer) {
-        return manufacturerRepository.save(manufacturer);
+    public Manufacturer saveManufacturer(CreateManufacturerRequest manufacturer) {
+        Manufacturer man = new Manufacturer();
+        man.setName(manufacturer.getName());
+        return manufacturerRepository.save(man);
     }
 
     @Override
